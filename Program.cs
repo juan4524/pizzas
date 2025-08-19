@@ -5,11 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 // 1) MVC
 builder.Services.AddControllersWithViews();
 
-// 2) DbContext (usa tu cadena del appsettings.json)
+// 2) DbContext (usa la cadena del appsettings.json)
 builder.Services.AddDbContext<PizzeriaContext>(opts =>
     opts.UseSqlServer(builder.Configuration.GetConnectionString("PizzeriaDB")));
 
-// 👇 Sesiones en memoria
+// Sesiones en memoria 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(o =>
 {
@@ -34,7 +34,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// activar sesión ANTES de Authorization
+// activar sesión ANTES de Authorization (permite a un usuario no autenticado ingresar articulos al carito SIN AUTETICARSE)
 app.UseSession();
 
 app.UseAuthorization();
@@ -44,7 +44,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Productos}/{action=Index}/{id?}");
 
-// 5) (Opcional) Sembrar datos iniciales
+// 5) (Opcional) Sembrar datos iniciales EN LA BASE DE DATOS PARA PRUEBAS (esto carga poductos a la base de datos si no existen)
 // DbInicializador.Sembrar(app);
 DbInicializador.Sembrar(app);
 app.Run();

@@ -1,0 +1,21 @@
+# Archivos de compilación .NET
+bin/
+obj/
+Debug/
+Release/
+
+# Configuración local de Visual Studio
+.vs/
+*.user
+*.suo
+
+# Paquetes Node.js
+node_modules/
+
+# Archivos de entorno y bases de datos locales
+*.db
+*.mdf
+*.ldf
+
+# Otros
+package-lock.json
