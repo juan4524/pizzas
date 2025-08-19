@@ -1,0 +1,35 @@
+@model List<Producto>
+@{
+    ViewData["Title"] = "Menú";
+}
+<h2>Menú</h2>
+
+@if (TempData["ok"] != null) { <div class="alert alert-success">@TempData["ok"]</div> }
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Producto</th><th>Tipo</th><th>Precio</th><th></th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach (var p in Model)
+  {
+      <tr>
+        <td>@p.Nombre</td>
+        <td>@p.Tipo</td>
+        <td>$@p.Precio</td>
+        <td>
+          <form asp-controller="Carrito" asp-action="Agregar" method="post" style="display:inline">
+            <input type="hidden" name="idProducto" value="@p.Id" />
+            <button class="btn btn-sm btn-primary" type="submit">Agregar al carrito</button>
+          </form>
+        </td>
+      </tr>
+  }
+  </tbody>
+</table>
+
+<a class="btn btn-outline-secondary" asp-controller="Carrito" asp-action="Index">Ver carrito</a>
+
+

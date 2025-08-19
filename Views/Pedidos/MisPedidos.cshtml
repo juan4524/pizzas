@@ -1,0 +1,39 @@
+@model List<Pedido>
+
+<h2>Mis pedidos</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No has realizado compras todavía.</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Total</th>
+                <th>Productos</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.CreadoEn.ToLocalTime()</td>
+                <td>@p.EstadoPedido</td>
+                <td>@p.Total.ToString("C")</td>
+                <td>
+                    <ul class="mb-0">
+                        @foreach (var it in p.Items)
+                        {
+                            <li>@it.NombreProducto x @it.Cantidad – @it.Subtotal.ToString("C")</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Registro";
+}
+<h2>Crear cuenta</h2>
+<form method="post" asp-action="Registro" class="mt-3" style="max-width:420px">
+  <div class="mb-3">
+    <label class="form-label">Nombre</label>
+    <input name="nombre" class="form-control" required />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Correo</label>
+    <input name="correo" type="email" class="form-control" required />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Contraseña</label>
+    <input name="contrasena" type="password" class="form-control" required />
+  </div>
+  <button class="btn btn-primary">Crear cuenta</button>
+</form>
