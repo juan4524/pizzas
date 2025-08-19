@@ -1,8 +1,67 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-4">
+
+    <!-- HERO clickeable -->
+    <a asp-controller="Productos" asp-action="Index" class="text-decoration-none">
+        <div class="position-relative rounded-4 overflow-hidden shadow-sm">
+            <img src="~/img/hero-pizza.jpg"
+                 alt="Nuestra pizza recién horneada"
+                 class="w-100"
+                 style="max-height:420px; object-fit:cover;">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4" 
+                 style="background: linear-gradient(180deg, rgba(0,0,0,.0) 40%, rgba(0,0,0,.55) 100%);">
+                <h1 class="text-white fw-bold mb-1">Pizzería</h1>
+                <p class="text-white-50 mb-3">Masa artesanal, salsa casera y horno bien caliente.</p>
+                <span class="btn btn-primary align-self-start">Ver menú</span>
+            </div>
+        </div>
+    </a>
+
+    <!-- Cómo la preparamos -->
+    <section class="mt-5">
+        <h2 class="mb-3">Cómo la preparamos</h2>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">1) Masa</h5>
+                        <p class="card-text">Harina, levadura y reposo lento para una base ligera y crujiente.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">2) Salsa</h5>
+                        <p class="card-text">Tomate triturado, ajo, orégano y aceite de oliva extra virgen.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">3) Queso & toppings</h5>
+                        <p class="card-text">Mozzarella fresca y tus ingredientes favoritos bien distribuidos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">4) Horno</h5>
+                        <p class="card-text">Horneada a alta temperatura hasta dorar y derretir perfecto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a asp-controller="Productos" asp-action="Index" class="btn btn-outline-primary btn-lg">
+                Ir al menú
+            </a>
+        </div>
+    </section>
 </div>

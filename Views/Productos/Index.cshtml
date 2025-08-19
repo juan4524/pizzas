@@ -2,34 +2,45 @@
 @{
     ViewData["Title"] = "Menú";
 }
-<h2>Menú</h2>
 
-@if (TempData["ok"] != null) { <div class="alert alert-success">@TempData["ok"]</div> }
+<h2 class="mb-4">Menú</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Producto</th><th>Tipo</th><th>Precio</th><th></th>
-    </tr>
-  </thead>
-  <tbody>
-  @foreach (var p in Model)
-  {
-      <tr>
-        <td>@p.Nombre</td>
-        <td>@p.Tipo</td>
-        <td>$@p.Precio</td>
-        <td>
-          <form asp-controller="Carrito" asp-action="Agregar" method="post" style="display:inline">
-            <input type="hidden" name="idProducto" value="@p.Id" />
-            <button class="btn btn-sm btn-primary" type="submit">Agregar al carrito</button>
-          </form>
-        </td>
-      </tr>
-  }
-  </tbody>
-</table>
+@if (TempData["ok"] != null)
+{
+    <div class="alert alert-success">@TempData["ok"]</div>
+}
+@if (TempData["err"] != null)
+{
+    <div class="alert alert-danger">@TempData["err"]</div>
+}
 
-<a class="btn btn-outline-secondary" asp-controller="Carrito" asp-action="Index">Ver carrito</a>
+<div class="row">
+@foreach (var p in Model)
+{
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <!-- Contenedor que mantiene proporción y centra la imagen sin recortarla -->
+            <div class="ratio ratio-16x9 bg-white d-flex align-items-center justify-content-center p-2">
+                <img src="~/img/@(p.Id).png"
+                     alt="@p.Nombre"
+                     style="max-width:100%; max-height:100%; object-fit:contain;" />
+            </div>
 
+            <div class="card-body">
+                <h5 class="card-title mb-1">@p.Nombre</h5>
+                <p class="card-text text-muted mb-2">@p.Tipo</p>
+                <p class="card-text fw-bold mb-3">$@p.Precio</p>
 
+                <form asp-controller="Carrito" asp-action="Agregar" method="post">
+                    <input type="hidden" name="idProducto" value="@p.Id" />
+                    <button class="btn btn-primary w-100" type="submit">Agregar al carrito</button>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+</div>
+
+<div class="mt-3">
+    <a class="btn btn-outline-secondary" asp-controller="Carrito" asp-action="Index">Ver carrito</a>
+</div>
